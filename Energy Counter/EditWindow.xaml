@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Energy_Counter" xmlns:viewmodels="clr-namespace:Energy_Counter.ViewModels"
+        xmlns:local="clr-namespace:Energy_Counter" xmlns:viewmodels="clr-namespace:Energy_Counter.ViewModels" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
         d:DataContext="{d:DesignInstance Type=viewmodels:EnergyView}"
         mc:Ignorable="d"
         Title="EditWindow" Height="450" Width="800">
@@ -22,17 +22,19 @@
             <ColumnDefinition Width="20*"></ColumnDefinition>
             <ColumnDefinition Width="20*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Building" FontSize="30" FontFamily="Nexa" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
-        <StackPanel Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0">
-            <TextBlock Text="Name" FontSize="16" FontFamily="Nexa" FontWeight="Bold"></TextBlock>
-            <TextBox Text="{Binding Path=BuildingViewModel.Name,UpdateSourceTrigger=PropertyChanged}" FontSize="15"></TextBox>
-        </StackPanel>
-        <TextBlock Grid.Column="1" Text="Resource" FontSize="30" FontFamily="Nexa" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        <TextBlock Grid.Column="0" Text="Cell Color" TextWrapping="Wrap" FontSize="30" FontFamily="Nexa" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        <xctk:ColorPicker  Grid.Column="0" Grid.Row="2" SelectedColor="{Binding Path=Brush}" Margin="0,0,48,32">
+
+        </xctk:ColorPicker>
+        <TextBlock Grid.Column="1" Text="Resource And Building" TextWrapping="Wrap" FontSize="30" FontFamily="Nexa" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1">
+
             <TextBlock Text="Resource Name" FontSize="16" FontFamily="Nexa" FontWeight="Bold"></TextBlock>
             <TextBox Text="{Binding Path=CounterViewModel.TariffViewModel.ResourceViewModel.Name,UpdateSourceTrigger=PropertyChanged}" FontSize="15"></TextBox>
             <TextBlock Text="Resource Unit" FontSize="16" FontFamily="Nexa" FontWeight="Bold"></TextBlock>
             <TextBox Text="{Binding Path=CounterViewModel.TariffViewModel.ResourceViewModel.Unit,UpdateSourceTrigger=PropertyChanged}" FontSize="15"></TextBox>
+            <TextBlock Text="Building Name" FontSize="16" FontFamily="Nexa" FontWeight="Bold"></TextBlock>
+            <TextBox Text="{Binding Path=BuildingViewModel.Name,UpdateSourceTrigger=PropertyChanged}" FontSize="15"></TextBox>
         </StackPanel>
         <TextBlock Grid.Column="2" Text="Tariff" FontSize="30" FontFamily="Nexa" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="2">

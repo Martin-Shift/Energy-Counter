@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Energy_Counter.ViewModels
 {
@@ -28,5 +29,9 @@ namespace Energy_Counter.ViewModels
             CounterViewModel.Counter.Counts.Add(new CounterView(window.Amount, CounterViewModel.Counters.Count == 0 ? DateTime.Now : CounterViewModel.Counters.Last().Date + new TimeSpan(1, 0, 0, 0)));
             OnPropertyChanged(nameof(CounterViewModel));
         });
+        private  SolidColorBrush _Brush { get; set; } = Brushes.WhiteSmoke;
+        public SolidColorBrush Brush { get => _Brush; 
+            set { _Brush = value; OnPropertyChanged(nameof(Brush)); } }
+
     }
 }

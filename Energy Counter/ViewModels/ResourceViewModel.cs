@@ -42,6 +42,7 @@ namespace Energy_Counter.ViewModels
             {
                 Resource.Name = value;
                 OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(Resource));
             }
         }
         [JsonIgnore]
@@ -53,6 +54,7 @@ namespace Energy_Counter.ViewModels
             {
                 Resource.Unit = value;
                 OnPropertyChanged(nameof(Unit));
+               
             }
         }
     }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Energy_Counter" xmlns:viewmodels="clr-namespace:Energy_Counter.ViewModels"
+       
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -32,15 +33,64 @@
                 <ColumnDefinition Width="15*"></ColumnDefinition>
                 <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding Path=SelectedItem}" ItemsSource="{Binding Path=EnergyViews}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="False"  SelectedItem="{Binding Path=SelectedItem}" ItemsSource="{Binding Path=EnergyViews}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Building" Binding="{Binding Path=BuildingViewModel.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Provider" Binding="{Binding Path=CounterViewModel.TariffViewModel.ProviderViewModel.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Resource" Binding="{Binding Path=CounterViewModel.TariffViewModel.ResourceViewModel.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Total Used" Binding="{Binding Path=CounterViewModel.TotalUsed}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Price per one" Binding="{Binding Path=CounterViewModel.TariffViewModel.FullPrice}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Total Price" Binding="{Binding Path=CounterViewModel.TotalPrice}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="ID">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=ID}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="50" Height="50" Source="{Binding Path=CounterViewModel.TariffViewModel.ResourceViewModel.Resource,Converter={StaticResource ResourceToImage}}"></Image>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Building">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=BuildingViewModel.Name}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Provider">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=CounterViewModel.TariffViewModel.ProviderViewModel.Name}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Resource">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=CounterViewModel.TariffViewModel.ResourceViewModel.Name}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Total Used">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=CounterViewModel.TotalUsed}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Price per one">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=CounterViewModel.TariffViewModel.FullPrice}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Total Price">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Background="{Binding Path=Brush}" Text="{Binding Path=CounterViewModel.TotalPrice}"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Visibility="{Binding Path=Visibility}" BorderThickness="0" FontSize="20" Content="View Full Page" Foreground="WhiteSmoke" Background="YellowGreen"  HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" Margin="0,99,0,17" FontWeight="Bold" Height="50" Width="151">

@@ -1,17 +1,13 @@
-﻿using Microsoft.Win32;
+﻿using Energy_Counter.Models;
+using Microsoft.Win32;
 using My.BaseViewModels;
-using System;
-using System.Data;
-using System.Windows.Controls;
-using System.Windows;
-using System.Windows.Input;
-using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Energy_Counter.Models;
+using System.IO;
 using System.Linq;
-using System.Text.Json.Nodes;
 using System.Text.Json;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Energy_Counter.ViewModels;
 
@@ -81,14 +77,14 @@ public class MainWindowViewModel : NotifyPropertyChangedBase
             }
             else if (Path.GetExtension(dialog.FileName) == ".json")
             {
-                File.WriteAllText(dialog.FileName,JsonSerializer.Serialize(EnergyViews.ToList()));
+                File.WriteAllText(dialog.FileName, JsonSerializer.Serialize(EnergyViews.ToList()));
             }
         }
     });
     public ICommand OpenReplace => new RelayCommand(x =>
     {
         var views = OpenFile();
-        if(views != null)
+        if (views != null)
         {
             EnergyViews = new(views);
             OnPropertyChanged(nameof(EnergyViews));
@@ -99,7 +95,7 @@ public class MainWindowViewModel : NotifyPropertyChangedBase
         var views = OpenFile();
         if (views != null)
         {
-            views.ForEach(x=>EnergyViews.Add(x));
+            views.ForEach(x => EnergyViews.Add(x));
         }
     });
     public List<EnergyView> OpenFile()
